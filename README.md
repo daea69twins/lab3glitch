@@ -1,5 +1,6 @@
 Daniel Payan was here 
 Alex Farfan was here
+Evie Holyoake was here
 
 # Hello SQLite!
 
