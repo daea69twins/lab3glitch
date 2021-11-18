@@ -1,4 +1,5 @@
 Daniel Payan was here 
+Alex Farfan was here
 
 # Hello SQLite!
 
