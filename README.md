@@ -1,6 +1,7 @@
-Daniel Payan was here 
-Alex Farfan was here
-Evie Holyoake was here
+Daniel Payan was here <br>
+Alex Farfan was here <br>
+Evie Holyoake was here <br>
+Alex Brown was here <br>
 
 # Hello SQLite!
 
