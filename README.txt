@@ -1,1 +1,0 @@
-This is our Tiediel project powered through glitch and SQLite
