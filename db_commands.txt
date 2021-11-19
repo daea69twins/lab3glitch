@@ -1,0 +1,16 @@
+CREATE TABLE admins (
+	username VARCHAR(16) PRIMARY KEY,
+   	password VARCHAR(16) NOT NULL
+);
+
+CREATE TABLE schedules (
+	id INTEGER PRIMARY KEY,
+	username VARCHAR(16) NOT NULL,
+	deadline TEXT,
+	location VARCHAR(16),
+	timezone VARCHAR(16) NOT NULL,
+	description TEXT,
+	reminder TEXT,
+	title VARCHAR(32) NOT NULL,
+	FOREIGN KEY (username) REFERENCES admins(username)
+);
