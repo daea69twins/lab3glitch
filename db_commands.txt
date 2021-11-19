@@ -15,10 +15,11 @@ CREATE TABLE schedules (
 	FOREIGN KEY (username) REFERENCES admins(username)
 );
 
-CREATE TABLE admins (
-    username VARCHAR(16) PRIMARY KEY,
-    password VARCHAR(16) NOT NULL
+CREATE TABLE invites (
+    id INTEGER PRIMARY KEY,
+    sch_id INTEGER NOT NULL, phone INTEGER NOT NULL, FOREIGN KEY (sch_id) REFERENCES schedules(id)
 );
+
 
 
 CREATE TABLE slots (
