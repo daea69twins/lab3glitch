@@ -14,3 +14,8 @@ CREATE TABLE schedules (
 	title VARCHAR(32) NOT NULL,
 	FOREIGN KEY (username) REFERENCES admins(username)
 );
+
+CREATE TABLE admins (
+    username VARCHAR(16) PRIMARY KEY,
+    password VARCHAR(16) NOT NULL
+);
