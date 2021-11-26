@@ -24,5 +24,10 @@ CREATE TABLE schedules (
     FOREIGN KEY (username) REFERENCES admins(username)
 );
 
+CREATE TABLE invites (
+    id INTEGER PRIMARY KEY,
+    sch_id INTEGER NOT NULL, phone INTEGER NOT NULL, FOREIGN KEY (sch_id) REFERENCES schedules(id)
+);
+
 
 /* SEED TABLES */
