@@ -1,5 +1,7 @@
 /* DROP ALL TABLES */
 DROP TABLE admins;
+DROP TABLE schedules;
+DROP TABLE invites;
 
 /* RECREATE ALL TABLES */
 
