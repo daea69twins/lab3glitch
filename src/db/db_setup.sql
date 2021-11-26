@@ -36,7 +36,14 @@ CREATE TABLE slots (
     end_time TEXT NOT NULL,
     max_rec INTEGER NOT NULL,
     FOREIGN KEY(sch_id) REFERENCES schedules(id)
+);
 
+CREATE TABLE reservations (
+    id INTEGER PRIMARY KEY,
+    slot_id INTEGER NOT NULL,
+    identifier VARCHAR(16) NOT NULL,
+    phone INTEGER NOT NULL,
+    FOREIGN KEY(slot_id) REFERENCES slots(id)
 );
 
 
