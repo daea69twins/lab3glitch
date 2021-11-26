@@ -1,6 +1,6 @@
 CREATE TABLE admins (
     username VARCHAR(16) PRIMARY KEY,
-       password VARCHAR(16) NOT NULL
+    password VARCHAR(16) NOT NULL
 );
 
 CREATE TABLE schedules (

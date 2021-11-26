@@ -1,7 +1,10 @@
 /* DROP ALL TABLES */
-DROP TABLE admins;
+DROP TABLE IF EXISTS admins;
 
 /* RECREATE ALL TABLES */
-
+CREATE TABLE admins (
+    username VARCHAR(16) PRIMARY KEY,
+    password VARCHAR(16) NOT NULL
+);
 
 /* SEED TABLES */
