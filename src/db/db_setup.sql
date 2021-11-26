@@ -3,6 +3,8 @@
 DROP TABLE admins;
 DROP TABLE schedules;
 DROP TABLE invites;
+DROP TABLE IF EXISTS slots; 
+DROP TABLE IF EXISTS reservations;
 =======
 DROP TABLE IF EXISTS admins;
 >>>>>>> 978af60854142076779e7bdbc83840699e32a4e2
