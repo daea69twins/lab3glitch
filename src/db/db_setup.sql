@@ -1,11 +1,7 @@
 /* DROP ALL TABLES */
-<<<<<<< HEAD
-DROP TABLE admins;
-DROP TABLE schedules;
-DROP TABLE invites;
-=======
 DROP TABLE IF EXISTS admins;
->>>>>>> 978af60854142076779e7bdbc83840699e32a4e2
+DROP TABLE IF EXISTS schedules;
+DROP TABLE IF EXISTS invites;
 
 /* RECREATE ALL TABLES */
 CREATE TABLE admins (
