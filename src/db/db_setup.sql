@@ -1,0 +1,7 @@
+/* DROP ALL TABLES */
+DROP TABLE admins;
+
+/* RECREATE ALL TABLES */
+
+
+/* SEED TABLES */
