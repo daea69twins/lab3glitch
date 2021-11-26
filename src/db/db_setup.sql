@@ -48,3 +48,4 @@ CREATE TABLE reservations (
 
 
 /* SEED TABLES */
+INSERT INTO admins VALUES ("herkyHawk", "password");
