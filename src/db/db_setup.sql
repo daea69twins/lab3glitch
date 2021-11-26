@@ -49,3 +49,4 @@ CREATE TABLE reservations (
 
 /* SEED TABLES */
 INSERT INTO admins VALUES ("herkyHawk", "password");
+INSERT INTO admins VALUES ("Iowa45", "wewin");
