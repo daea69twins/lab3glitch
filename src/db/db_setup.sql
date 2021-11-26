@@ -29,5 +29,15 @@ CREATE TABLE invites (
     sch_id INTEGER NOT NULL, phone INTEGER NOT NULL, FOREIGN KEY (sch_id) REFERENCES schedules(id)
 );
 
+CREATE TABLE slots (
+    id INTEGER PRIMARY KEY ,
+    sch_id INTEGER NOT NULL,
+    start_time TEXT NOT NULL,
+    end_time TEXT NOT NULL,
+    max_rec INTEGER NOT NULL,
+    FOREIGN KEY(sch_id) REFERENCES schedules(id)
+
+);
+
 
 /* SEED TABLES */
