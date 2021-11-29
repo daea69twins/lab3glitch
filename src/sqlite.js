@@ -8,7 +8,7 @@
 const fs = require("fs");
 
 // Initialize the database
-const dbFile = "./.data/choices.db";
+const dbFile = "./src/db/daea.db";
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require("sqlite3").verbose();
 const dbWrapper = require("sqlite");
