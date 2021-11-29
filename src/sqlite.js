@@ -46,7 +46,7 @@ dbWrapper
         );
       } else {
         // We have a database already - write Choices records to log for info
-        console.log(await db.all("SELECT * from Choices"));
+        console.log(await db.all("SELECT * from admins"));
 
         //If you need to remove a table from the database use this syntax
         //db.run("DROP TABLE Logs"); //will fail if the table doesn't exist
@@ -59,6 +59,20 @@ dbWrapper
 // Our server script will call these methods to connect to the db
 module.exports = {
   
+  getAdminPassword: async (username) => {
+    try {
+      return await db.all("SELECT password from admins WHERE username="+username);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+
+
+
+  /********************************************************************************************************************/
   /**
    * Get the options in the database
    *
@@ -74,7 +88,6 @@ module.exports = {
       console.error(dbError);
     }
   },
-
   /**
    * Process a user vote
    *
