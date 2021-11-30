@@ -17,7 +17,9 @@ CREATE TABLE schedules (
 
 CREATE TABLE invites (
     id INTEGER PRIMARY KEY,
-    sch_id INTEGER NOT NULL, phone INTEGER NOT NULL, FOREIGN KEY (sch_id) REFERENCES schedules(id)
+    sch_id INTEGER NOT NULL,
+    phone INTEGER NOT NULL,
+    FOREIGN KEY (sch_id) REFERENCES schedules(id)
 );
 
 

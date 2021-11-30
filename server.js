@@ -42,9 +42,9 @@ if (seo.url === "glitch-default") {
 // We use a module for handling database operations in /src
 const data = require("./src/data.json");
 const db = require("./src/" + data.database);
-const adminPassword = await db.getAdminPassword("herkyHawk");
-console.log("TESTING ADMIN READ: ");
-console.log(adminPassword);
+// const adminPassword = await db.getAdminPassword("herkyHawk");
+// console.log("TESTING ADMIN READ: ");
+// console.log(adminPassword);
 
 
 /**
