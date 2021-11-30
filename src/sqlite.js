@@ -69,7 +69,7 @@ module.exports = {
   },
 
 
-  createInvites: async (sch_id, phone) => {
+  createInvite: async (sch_id, phone) => {
     try {
       return await db.all("INSERT INTO invites VALUES (NULL, ${sch_id}, ${phone})");
     } catch (dbError) {
@@ -79,7 +79,7 @@ module.exports = {
   },
 
 
-  createSlots: async (sch_id, start_time, end_time, max_rec) => {
+  createSlot: async (sch_id, start_time, end_time, max_rec) => {
     try {
       return await db.all("INSERT INTO slots VALUES (NULL, ${sch_id}, ${start_time}, ${end_time}, ${max_rec})");
     } catch (dbError) {
@@ -87,6 +87,18 @@ module.exports = {
       console.error(dbError);
     }
   },
+
+
+  createSchedule: async (username, deadline, location, timezone, description, reminder, title) => {
+    try {
+      return await db.all("INSERT INTO schedules VALUES (NULL, ${username}, ${deadline}, ${location}, ${timezone}, ${description}, ${reminder}, ${title})");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  
 
 
 
