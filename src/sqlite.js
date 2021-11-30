@@ -69,6 +69,16 @@ module.exports = {
   },
 
 
+  createInvites: async (sch_id, phone) => {
+    try {
+      return await db.all("INSERT INTO invites VALUES (NULL, ${sch_id}, ${phone})");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
 
 
 
