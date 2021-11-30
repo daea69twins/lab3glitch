@@ -79,6 +79,18 @@ module.exports = {
   },
 
 
+  createSlots: async (sch_id, start_time, end_time, max_rec) => {
+    try {
+      return await db.all("INSERT INTO slots VALUES (NULL, ${sch_id}, ${start_time}, ${end_time}, ${max_rec})");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+
+
 
 
 
