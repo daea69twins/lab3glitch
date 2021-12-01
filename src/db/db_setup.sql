@@ -13,7 +13,7 @@ CREATE TABLE admins (
 );
 
 CREATE TABLE schedules (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     username VARCHAR(16) NOT NULL,
     deadline TEXT,
     location VARCHAR(16),
@@ -25,12 +25,12 @@ CREATE TABLE schedules (
 );
 
 CREATE TABLE invites (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     sch_id INTEGER NOT NULL, phone INTEGER NOT NULL, FOREIGN KEY (sch_id) REFERENCES schedules(id)
 );
 
 CREATE TABLE slots (
-    id INTEGER PRIMARY KEY ,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     sch_id INTEGER NOT NULL,
     start_time TEXT NOT NULL,
     end_time TEXT NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE slots (
 );
 
 CREATE TABLE reservations (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     slot_id INTEGER NOT NULL,
     identifier VARCHAR(16) NOT NULL,
     phone INTEGER NOT NULL,
