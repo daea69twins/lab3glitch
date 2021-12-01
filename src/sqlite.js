@@ -201,6 +201,16 @@ createReservation: async (slot_id, identifier, phone) => {
     }
   },
 
+  getReservationsBySlot: async (slot_id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT * FROM reservations WHERE slot_id="+slot_id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
   
   
 
