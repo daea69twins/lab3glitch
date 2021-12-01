@@ -52,31 +52,31 @@ const db = require("./src/" + data.database);
  * Client can request raw data using a query parameter
  */
 fastify.get("/", async (request, reply) => {
-  /* 
+  /*
   Params is the data we pass to the client
   - SEO values for front-end UI but not for raw data
   */
   let params = request.query.raw ? {} : { seo: seo };
 
   // Get the available choices from the database
-  const options = await db.getOptions();
-  if (options) {
-    params.optionNames = options.map(choice => choice.language);
-    params.optionCounts = options.map(choice => choice.picks);
-  }
-  // Let the user know if there was a db error
-  else params.error = data.errorMessage;
+//   const options = await db.getOptions();
+//   if (options) {
+//     params.optionNames = options.map(choice => choice.language);
+//     params.optionCounts = options.map(choice => choice.picks);
+//   }
+//   // Let the user know if there was a db error
+//   else params.error = data.errorMessage;
 
-  // Check in case the data is empty or not setup yet
-  if (options && params.optionNames.length < 1)
-    params.setup = data.setupMessage;
+//   // Check in case the data is empty or not setup yet
+//   if (options && params.optionNames.length < 1)
+//     params.setup = data.setupMessage;
 
   // ADD PARAMS FROM TODO HERE
 
   // Send the page options or raw JSON data if the client requested it
   request.query.raw
-    ? reply.send(params)
-    : reply.view("/src/pages/index.hbs", params);
+      ? reply.send(params)
+      : reply.view("/src/pages/index.hbs", params);
 });
 
 /**
@@ -86,32 +86,54 @@ fastify.get("/", async (request, reply) => {
  * Send vote to database helper
  * Return updated list of votes
  */
-fastify.post("/", async (request, reply) => { 
-  // We only send seo if the client is requesting the front-end ui
+fastify.post("/", async (request, reply) => {
+  // Create the params object -- info stored here will be passed to the next view/page
   let params = request.query.raw ? {} : { seo: seo };
 
-  // Flag to indicate we want to show the poll results instead of the poll form
-  params.results = true;
-  let options;
+  // Store in params the name and quantity from the submitted form
+  // (accessed through object 'request')
+  params.username = request.body.username
+  params.password = request.body.password
 
-  // We have a vote - send to the db helper to process and return results
-  if (request.body.language) {
-    options = await db.processVote(request.body.language);
-    if (options) {
-      // We send the choices and numbers in parallel arrays
-      params.optionNames = options.map(choice => choice.language);
-      params.optionCounts = options.map(choice => choice.picks);
+  console.log("|"+ params.password + "|")
+  let queryResult = await db.getAdminPassword(params.username)
+  let storedPassword;
+  console.log(queryResult.length)
+  if (queryResult.length > 0)
+    {
+      storedPassword = queryResult[0].password
     }
-  }
-  params.error = options ? null : data.errorMessage;
+  
+  if (storedPassword == params.password)
+    {
+      params.loggedin = request.body.username
+      params.dbQueryResult = await db.getSchedulesByAdmin(params.username)
+      console.log(params.dbQueryResult[0].id)
+      request.query.raw
+      ? reply.send(params)
+      : reply.view("/src/pages/admin.hbs", params);
+    }
+  else
+    {
+      params.error = "Invalid login."
+        request.query.raw
+      ? reply.send(params)
+      : reply.view("/src/pages/index.hbs", params);
+    }
+  // Call the function (from sqlite.js) to create a new example entry in the db
+  
 
+  // Call the function to get all data from the example table in the db,
+  // and store it in params
+  
   // Return the info to the client
-  request.query.raw
-    ? reply.send(params)
-    : reply.view("/src/pages/index.hbs", params);
+
 });
 
-/**
+
+/** other shit they wrote ******************************************************************\
+
+ /**
  * Admin endpoint returns log of votes
  *
  * Send raw json or the admin handlebars page
@@ -127,8 +149,8 @@ fastify.get("/logs", async (request, reply) => {
 
   // Send the log list
   request.query.raw
-    ? reply.send(params)
-    : reply.view("/src/pages/admin.hbs", params);
+      ? reply.send(params)
+      : reply.view("/src/pages/admin.hbs", params);
 });
 
 /**
@@ -146,10 +168,10 @@ fastify.post("/reset", async (request, reply) => {
   - make sure we have a key in the env and body, and that they match
   */
   if (
-    !request.body.key ||
-    request.body.key.length < 1 ||
-    !process.env.ADMIN_KEY ||
-    request.body.key !== process.env.ADMIN_KEY
+      !request.body.key ||
+      request.body.key.length < 1 ||
+      !process.env.ADMIN_KEY ||
+      request.body.key !== process.env.ADMIN_KEY
   ) {
     console.error("Auth fail");
 
@@ -170,8 +192,8 @@ fastify.post("/reset", async (request, reply) => {
   const status = params.failed ? 401 : 200;
   // Send an unauthorized status code if the user credentials failed
   request.query.raw
-    ? reply.status(status).send(params)
-    : reply.status(status).view("/src/pages/admin.hbs", params);
+      ? reply.status(status).send(params)
+      : reply.status(status).view("/src/pages/admin.hbs", params);
 });
 
 // Run the server and report out to the logs

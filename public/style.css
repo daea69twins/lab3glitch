@@ -8,7 +8,7 @@ to this section's matching END comment to see page-specific styles.
 ******************************************************************************/
 /* Our default values set as CSS variables */
 :root {
-  --color-bg: #FFE6F8;
+  --color-bg: #FFD1DC;
   --color-text-main: #000000;
   --color-primary: #D7F5EF;
   --wrapper-height: 87vh;
@@ -129,7 +129,7 @@ label {
 
 /* Title h1 style */
 h1 {
-  color: #2800FF;
+  color: #696969;
   font-family: HK Grotesk;
   font-style: normal;
   font-weight: bold;

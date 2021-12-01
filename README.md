@@ -1,8 +1,3 @@
-Daniel Payan was here <br>
-Alex Farfan was here <br>
-Evie Holyoake was here <br>
-Alex Brown was here <br>
-
 # Hello SQLite!
 
 This project includes a [Node.js](https://nodejs.org/en/about/) server script that uses a persistent [SQLite](https://www.sqlite.org) database. The app also includes a front-end with two web pages that connect to the database using the server API. 📊
