@@ -89,7 +89,97 @@ module.exports = {
       // Database connection error
       console.error(dbError);
     }
-  }//,
+  },
+
+  getAdminPassword: async (username) => {
+    try {
+      return await db.all("SELECT password from admins WHERE username="+username);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+  createInvite: async (sch_id, phone) => {
+    try {
+      return await db.all("INSERT INTO invites VALUES (NULL, "+sch_id+", "+phone+")");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+  createSlot: async (sch_id, start_time, end_time, max_rec) => {
+    try {
+      return await db.all("INSERT INTO slots VALUES (NULL, "+sch_id+", "+start_time+", "+end_time+", "+max_rec+")");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+  createSchedule: async (username, deadline, location, timezone, description, reminder, title) => {
+    try {
+      return await db.all("INSERT INTO schedules VALUES (NULL, "+username+", "+deadline+", "+location+", "+timezone+", "+description+", "+reminder+", "+title+")");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+createReservation: async (slot_id, identifier, phone) => {
+    try {
+      return await db.all("INSERT INTO reservations VALUES (NULL, "+slot_id+", "+identifier+", "+phone+")");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  getSchedule: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT * FROM example_table");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+  getSlot: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT sch_id FROM slots WHERE id="+id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  getInvite: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT sch_id FROM invites WHERE id="+id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  getReservation: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT slot_id FROM reservations WHERE id="+id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
 
 
 //   /**
