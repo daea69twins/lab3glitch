@@ -50,3 +50,6 @@ CREATE TABLE reservations (
 /* SEED TABLES */
 INSERT INTO admins VALUES ("herkyHawk", "password");
 INSERT INTO admins VALUES ("Iowa45", "wewin");
+INSERT INTO schedules VALUES (NULL, "herkyHawk", NULL, "room21", NULL, "herkyhawks meeting", NULL, "Sewing Club"); 
+INSERT INTO schedules VALUES (NULL, "herkyHawk", NULL, "room50", NULL, "Alex Meeting", NULL, "Cool kid Club"); 
+INSERT INTO schedules VALUES (NULL, "Iowa45", NULL, "room69", NULL, "Club Meeting", NULL, "Coding Club"); 
