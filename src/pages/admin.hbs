@@ -25,7 +25,7 @@
     <div class="content" role="main">
 
       <!-- This is the start of content for our page -->
-      <h1>Logs</h1>
+      <h1>Submissions So Far:</h1>
       {{#if error}}
       <p class="error">
         {{error}}
@@ -34,53 +34,35 @@
 
       <!-- The server script returns the logs in an array -->
       <p>
-        Each time you submit an option through the poll in the <a href="/">Home</a> page, the app will add it to the log. <em>Most recent records will be shown (max 20).</em>
+        Most recent submission:
       </p>
+      <p>name: {{name}}</p>
+      <p>quantity: {{quantity}}</p>
+      <br>
+      <p>Submissions to date:</p>
+
+      <table>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>quantity</th>
+        </tr>
+        {{#each dbQueryResult}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{quantity}}</td>
+          </tr>
+        {{/each}}
+      </table>
+
+
+
       <!-- Write out a table row for each entry in the log array showing choice and timestamp -->
-      {{#if optionHistory.length}}
-          <div>
-            <h2>Poll History</h2>
-            <table>
-              <tr>
-                <th>Option Name</th>
-                <th>Timestamp</th>
-              </tr>
-              {{#each optionHistory}}
-                <tr>
-                  <td>{{choice}}</td>
-                  <td>{{time}}</td>
-                </tr>
-              {{/each}}
-            </table>
-          </div>
-      {{else}}
-      <p class="error">
-        No records!
-      </p>
-      {{/if}}
+
 
       <!-- The user can clear the logs if they first set up an admin key in the env -->
-      <form action="/reset" method="post">
-        <h2>
-          Clear vote history
-        </h2>
-        <p>
-          Clear the history only if you are absolutely sure! It cannot be undone.
-          <em>(Check the README for instructions on setting up your admin key.)</em>
-        </p>
-        <p>
-          Enter your admin key to confirm:
-        </p>
-        
-        <!-- Server returns a failed flag if the submitted key doesn't match -->
-        {{#if failed}}
-        <p class="error">
-          {{failed}}
-        </p>
-        {{/if}}
-        <input type="password" id="pass" name="key" required>
-        <button type="submit">Clear log history</button>
-      </form>
+
       {{/if}}
     </div>
   </div>
@@ -89,12 +71,7 @@
     <div class="links"></div>
     <a href="/">Home</a>
     <span class="divider">|</span>
-    <a href="/logs">Admin</a>
-    <a class="btn--remix" target="_top" href="https://glitch.com/edit/#!/remix/glitch-hello-sqlite">
-      <img src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140"
-        alt="" />
-      Remix on Glitch
-    </a>
+
   </footer>
 </body>
 
