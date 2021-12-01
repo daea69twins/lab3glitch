@@ -93,7 +93,7 @@ module.exports = {
 
   getAdminPassword: async (username) => {
     try {
-      return await db.all("SELECT password from admins WHERE username="+username);
+      return await db.all("SELECT password from admins WHERE username='"+username+"'");
     } catch (dbError) {
       // Database connection error
       console.error(dbError);
@@ -113,7 +113,7 @@ module.exports = {
 
   createSlot: async (sch_id, start_time, end_time, max_rec) => {
     try {
-      return await db.all("INSERT INTO slots VALUES (NULL, "+sch_id+", "+start_time+", "+end_time+", "+max_rec+")");
+      return await db.all("INSERT INTO slots VALUES (NULL, "+sch_id+", '"+start_time+"', '"+end_time+"', "+max_rec+")");
     } catch (dbError) {
       // Database connection error
       console.error(dbError);
@@ -123,7 +123,7 @@ module.exports = {
 
   createSchedule: async (username, deadline, location, timezone, description, reminder, title) => {
     try {
-      return await db.all("INSERT INTO schedules VALUES (NULL, "+username+", "+deadline+", "+location+", "+timezone+", "+description+", "+reminder+", "+title+")");
+      return await db.all("INSERT INTO schedules VALUES (NULL, '"+username+"', '"+deadline+"', '"+location+"', '"+timezone+"', '"+description+"', '"+reminder+"', '"+title+"')");
     } catch (dbError) {
       // Database connection error
       console.error(dbError);
@@ -133,7 +133,7 @@ module.exports = {
 
 createReservation: async (slot_id, identifier, phone) => {
     try {
-      return await db.all("INSERT INTO reservations VALUES (NULL, "+slot_id+", "+identifier+", "+phone+")");
+      return await db.all("INSERT INTO reservations VALUES (NULL, "+slot_id+", '"+identifier+"', "+phone+")");
     } catch (dbError) {
       // Database connection error
       console.error(dbError);
