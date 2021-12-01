@@ -181,6 +181,29 @@ createReservation: async (slot_id, identifier, phone) => {
     }
   },
 
+  getSchedulesByAdmin: async (username) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT * FROM schedules WHERE username='"+username+"'");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  getSlotsBySchedule: async (sch_id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT * FROM slots WHERE sch_id="+sch_id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  
+  
+
 
 //   /**
 //    * Process a user vote
