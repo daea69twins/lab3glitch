@@ -140,6 +140,47 @@ createReservation: async (slot_id, identifier, phone) => {
     }
   },
 
+  getSchedule: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT * FROM example_table");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+
+  getSlot: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT sch_id FROM slots WHERE id="+id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  getInvite: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT sch_id FROM invites WHERE id="+id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
+  getReservation: async (id) => {
+    // We use a try catch block in case of db errors
+    try {
+      return await db.all("SELECT slot_id FROM reservations WHERE id="+id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+
 
 //   /**
 //    * Process a user vote
