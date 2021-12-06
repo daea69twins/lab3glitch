@@ -8,7 +8,7 @@ to this section's matching END comment to see page-specific styles.
 ******************************************************************************/
 /* Our default values set as CSS variables */
 :root {
-  --color-bg: #FFD1DC;
+  --color-bg: #DEE8EB;
   --color-text-main: #000000;
   --color-primary: #D7F5EF;
   --wrapper-height: 87vh;
@@ -74,6 +74,7 @@ to this section's matching END comment to see page-specific styles.
   width: 100%;
   flex-wrap: wrap;
   border-top: 4px solid #fff;
+  color: #696969;
 }
 
 .footer a:not(.btn--remix):link,
@@ -103,18 +104,21 @@ END Glitch hello-app default styles
 ******************************************************************************/
 
 body {
+  color: #696969;
   font-family: HK Grotesk;
   background-color: var(--color-bg);
 }
 
 /* Page structure */
 .wrapper {
+  color: #696969;
   min-height: var(--wrapper-height);
   display: grid;
   place-items: center;
   margin: 0 1rem;
 }
 .content {
+  color: #696969;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -124,6 +128,7 @@ body {
 
 p,
 label {
+  color: #696969;
   font-size: 1.25rem;
 }
 
@@ -152,7 +157,7 @@ h1 {
 /* Styles for our poll form and its results */
 .poll-form,
 .poll-results {
-  background-color: #FFF3FC;
+  background-color: #FFFFF;
   padding: 0 16px 16px 16px;
   border-radius: 8px;
 }
@@ -162,19 +167,43 @@ h1 {
 }
 button,
 input {
+  
   font-family: inherit;
   font-size: 100%;
   background: #FFFFFF;
-  border: 1px solid #000000;
+  border: 1px solid #696969;
   box-sizing: border-box;
   border-radius: 4px;
+  color: #696969;
   padding: 0.5rem 1rem;
 }
 button {
   cursor: pointer;
+  border: 2px solid #696969;
+  color: #696969;
+  background: #EEEEEE
+}
+input[type=text]:focus{
+  outline: 1px solid #696969;    
+}
+input[type=text]{
+  width: 150px
+}
+input[type=password]{
+  width: 150px
+}
+input[type=password]:focus{
+  outline: 1px solid #696969;    
+}
+input[type=submit]
+{
+  cursor: pointer;
+  border: 2px solid #696969;
+  color: #696969;
+  background: #EEEEEE
 }
 label {
-  color: #000000;
+  color: #696969;;
   font-weight: bold;
 }
 
@@ -186,29 +215,75 @@ label {
   font-size: 1rem;
 }
 h2 {
-  color: #2800FF;
+  color: #696969;
+  font-size: 40px;
 }
 
 /* Admin page */
 table {
   text-align: left;
   border-collapse: collapse;
-  background-color: #FFF3FC;
+  background-color: #FFFFF;
 }
 td,
 th {
-  border: 2px solid #FFFFFF;
+  border: 2px solid #DEE8EB;
+  background-color: #FFFFFF;
   padding: 0.5rem;
 }
-p a {
+tr {
+  background-color: #FFFFFF;
+}
+p, a {
   text-decoration: none;
   font-weight: bold;
+  color: #696969
 }
-p.error,
+a:href {
+  color: #696969
+}
+p.error{
+  color: #696969
+}
 p.error a:link,
 p.error a:visited {
   color: #2800FF;
 }
 .results {
   padding-top:10px;
+}
+
+.entries{
+  width: 500px;
+  height: 100px;
+}
+
+.box {
+        width: 175px;
+        height: 40px;
+        border: 1px solid #999;
+
+        color: #696969;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+  
+  font-family: inherit;
+  font-size: 16px;
+  background: #FFFFFF;
+  border: 1px solid #696969;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: #696969;
+  padding: .5rem 1rem;
+  }
+
+textarea {
+  background: #FFFFFF; /* This ruins default border */
+  border: 1px solid #696969;
+  color: #696969;
+  font-family: HK Grotesk;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 200px;
+  height: 80px;
 }

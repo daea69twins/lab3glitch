@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    var counter = 1;
+  </script>
+<label name=username> {{username}}</label>
+  <!-- 
+    This is the Handlebars template for the Admin page 
+    - The page displays the current list of logs returned by server.js
+    - The user can clear the log by first setting up an admin key
+  -->
+
+  <meta charset="utf-8" />
+  <link rel="icon" href="https://glitch.com/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Hello SQLite: Logs</title>
+
+  <!-- Import the webpage's stylesheet -->
+  <link rel="stylesheet" href="/style.css" />
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="content" role="main">
+      <!-- This is the start of content for our page -->
+      <h1>
+      {{title}}
+      </h1>
+      <p>
+        {{description}}
+        <br>
+        name: {{name}}
+        <br>
+        phonenumber: {{identifier}}
+        <br>
+        
+      </p>
+      {{#if error}}
+      <p class="error">
+        {{error}}
+      </p>
+      
+      {{/if}}
+    <br>
+      <!-- The server script returns the logs in an array -->
+      
+          <!-- The server script returns the list of language options to offer in the poll -->
+          <div>
+            
+          <a href="/">
+          <button type="submit" id="submitChoice">
+            choose time
+          </button></a>
+      </div>  
+    
+      <p>times:</p>
+
+            <table>
+        <tr>
+          <th></th>
+          <th>start time</th>
+          <th>end time</th>
+        </tr>
+        {{#each timesList}}
+          <tr>
+            <td><input type="radio" id={{start}} name="optradio"></td>
+            <td>{{start}}</td>
+            <td>{{end}}</td>
+          </tr>
+        {{/each}}
+      </table>
+      
+      
+      <script>
+
+        document.getElementById('submitChoice').addEventListener("click", function() {
+          //document.getElementById
+        })
+        
+      </script>
+    
+      
+      
+
+
+      
+    </div>
+  </div>
+  <!-- The footer holds our remix button — you can use it for structure or cut it out ✂ -->
+  
+</body>
+
+</html>

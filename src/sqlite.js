@@ -94,7 +94,7 @@ module.exports = {
   getSchedulesByAdmin: async (username) => {
     // We use a try catch block in case of db errors
     try {
-      console.log("sup alex")
+      
       return await db.all("SELECT * FROM schedules WHERE username='"+username+"'");
       
     } catch (dbError) {
@@ -115,6 +115,9 @@ module.exports = {
 
   createInvite: async (sch_id, phone) => {
     try {
+      console.log("IN CREATEINVITE!")
+      console.log("sch_id: "+sch_id)
+      console.log("phone : "+phone)
       return await db.all("INSERT INTO invites VALUES (NULL, "+sch_id+", "+phone+")");
     } catch (dbError) {
       // Database connection error
@@ -133,9 +136,18 @@ module.exports = {
   },
 
 
-  createSchedule: async (username, deadline, location, timezone, description, reminder, title) => {
+  createSchedule: async (username, deadline, startTime, endTime, location, timezone, description, title) => {
     try {
-      return await db.all("INSERT INTO schedules VALUES (NULL, '"+username+"', '"+deadline+"', '"+location+"', '"+timezone+"', '"+description+"', '"+reminder+"', '"+title+"')");
+      return await db.all("INSERT INTO schedules VALUES (NULL, '"+username+"', "+deadline+", "+startTime+", "+endTime+", '"+location+"', '"+timezone+"', '"+description+"', '"+title+"')");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+  
+  getScheduleByUsernameAndTitle: async (username, title) => {
+    try {
+      return await db.all("SELECT * FROM schedules WHERE username='"+username+"' AND title='"+title+"'");
     } catch (dbError) {
       // Database connection error
       console.error(dbError);
@@ -155,7 +167,7 @@ createReservation: async (slot_id, identifier, phone) => {
   getSchedule: async (id) => {
     // We use a try catch block in case of db errors
     try {
-      return await db.all("SELECT * FROM example_table");
+      return await db.all("SELECT * FROM schedules WHERE id="+id);
     } catch (dbError) {
       // Database connection error
       console.error(dbError);
@@ -167,6 +179,22 @@ createReservation: async (slot_id, identifier, phone) => {
     // We use a try catch block in case of db errors
     try {
       return await db.all("SELECT sch_id FROM slots WHERE id="+id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+  
+  getSlotsBySchedule: async (sch_id) => {
+    // We use a try catch block in case of db errors
+    try {
+      let slots = await db.all("SELECT * FROM slots WHERE sch_id="+sch_id);
+      
+      // console.log("slots from sqlite.js")
+      // console.log(slots)
+      
+      return slots
+      //return await db.all("SELECT * FROM slots WHERE sch_id="+sch_id);
     } catch (dbError) {
       // Database connection error
       console.error(dbError);
@@ -192,6 +220,28 @@ createReservation: async (slot_id, identifier, phone) => {
       console.error(dbError);
     }
   },
+  
+  getInvitationsBySchedule: async (sch_id) => {
+    // We use a try catch block in case of db errors
+    try {
+      let invitees = await db.all("SELECT * FROM invites WHERE sch_id="+sch_id)
+      console.log(invitees)
+      return invitees
+      //return await db.all("SELECT * FROM invites WHERE sch_id="+sch_id);
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  },
+  
+  createSlotForSession: async ( sch_id, startTime, endTime ) => {
+    try {
+      return await db.all("INSERT INTO slots VALUES (NULL, "+sch_id+", "+startTime+", "+endTime+", "+1+")");
+    } catch (dbError) {
+      // Database connection error
+      console.error(dbError);
+    }
+  }
 
 
 //   /**

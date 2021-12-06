@@ -4,9 +4,12 @@
 <head>
 
  
-
+  
   <!-- Import the webpage's stylesheet -->
   <link rel="stylesheet" href="/style.css" />
+  <script>
+    var counter = 0;
+  </script>
 
   <!-- Show choice chart on poll submission -->
   
@@ -23,21 +26,89 @@
       <p class="error">
         {{error}}
       </p>
-      {{/if}}
+    {{/if}}
     <div class="content" role="main">
         <form method="post" action="/">
           <!-- The server script returns the list of language options to offer in the poll -->
-          <label>name:</label>
+          <label>username:</label>
           <input type="text" name="username" required />
           <br>
-          <label>password:</label>
+          <label>password: </label>
           <input type="password" name="password" required />
           <br>
           <br>
+          <button type="submit" id="login">
+            login
+          </button>
+          
+        </form>
+      <h2>
+        or
+      </h2>
+          <form method="post" action="/userselect">
+          <!-- The server script returns the list of language options to offer in the poll -->
+          <label>schedule id:</label>
+          <input type="text" name="scheduleid" />
+             <br>
+            <label>name: </label>
+          <input type="text" name="fullname"  />
+          <br>
+          <label>phonenumber: </label>
+          <input type="text" name="phonenumber"  />
+         
+          <br>
+            <br>
+          <button type="submit" id="login">
+            select
+          </button>
+      </form>
+      <br>
+      {{#if devMode}}
+        <form method="post" action="/create">
+          <!-- The server script returns the list of language options to offer in the poll -->
+          
           <button type="submit">
-            submit
+            create schedule
           </button>
         </form>
+        <form method="get" action="/userviewtest">
+          <!-- The server script returns the list of language options to offer in the poll -->
+          
+          <button type="submit">
+            user view
+          </button>
+        </form>        
+      
+          <form method="post" action="/viewschedule">
+          <!-- The server script returns the list of language options to offer in the poll -->
+          
+          <button type="submit">
+            view schedule
+          </button>
+        </form>  
+      
+        <div id="test_div">
+          <button type="submit" id="test_button">
+            test
+          </button>
+          <br>
+        </div>
+      
+        <script>
+          document.getElementById("test_button").addEventListener("click", function() {
+            var newLabel = document.createElement("Label");
+            var breakline = document.createElement("br");
+            newLabel.id = "proof"+counter;
+            newLabel.setAttribute("name", "proof"+counter);
+            newLabel.innerHTML = "PROOF "+counter;
+            counter = counter+1;
+            document.getElementById("test_div").appendChild(newLabel);
+            document.getElementById("test_div").appendChild(breakline);
+          });
+        </script>
+      {{/if}}
+      
+      
 </body>
 
 </html>

@@ -13,7 +13,7 @@
   <link rel="icon" href="https://glitch.com/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Hello SQLite: Logs</title>
+  <title>admin</title>
 
   <!-- Import the webpage's stylesheet -->
   <link rel="stylesheet" href="/style.css" />
@@ -26,18 +26,26 @@
 
       <!-- This is the start of content for our page -->
       <h1>hello,
-      {{username}}
+      {{loggedin}}
       </h1>
       {{#if error}}
       <p class="error">
         {{error}}
       </p>
       {{else}}
-
+    <br>
       <!-- The server script returns the logs in an array -->
-      
-      <br>
-      <p>calendars:</p>
+        <form method="post" action="/create">
+          <!-- The server script returns the list of language options to offer in the poll -->
+          
+          <input type = "hidden" name="username" value={{loggedin}}></input>
+          <button type="submit">
+            create schedule
+          </button>
+        </form>
+     
+      <p>
+    click the id to view/edit</p>
 
       <table>
         <tr>
@@ -45,13 +53,20 @@
           <th>title</th>
           <th>location</th>
           <th>timezone</th>
+          <th>start time</th>
+          <th>end time</th>
         </tr>
         {{#each dbQueryResult}}
           <tr>
-            <td>{{id}}</td>
+            <td><form method="post" action="/viewandedit"><button type="submit">
+              {{id}}
+              </button>
+              <input type = "hidden" name="schedId" id="schedId" value={{id}}></input></form></td>
             <td>{{title}}</td>
             <td>{{location}}</td>
             <td>{{timezone}}</td>
+            <td>{{start_time}}</td>
+            <td>{{end_time}}</td>
           </tr>
         {{/each}}
       </table>
@@ -69,7 +84,7 @@
   <!-- The footer holds our remix button — you can use it for structure or cut it out ✂ -->
   <footer class="footer">
     <div class="links"></div>
-    <a href="/">Home</a>
+    <a href="/">log out</a>
     <span class="divider">|</span>
 
   </footer>
